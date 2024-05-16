@@ -43,14 +43,20 @@ class IText {
     initData() {
         
     }
+    // 接受消息
+    receiveBroadcastMessage(message){}
+    // 设置组件的上下文内容值
+    setContextValue(object) {}
+    // 获取组件的上下文内容值
+    getContextValue(){}
     // 渲染数据
     render(_cb) {
         const _this = this, laytpl = layui.laytpl
-        laytpl(template).render({ propData: this.propData, moduleObject: this.moduleObject}, function (html) {
-            $('#idm_' + _this.moduleObject.id + (_this.moduleObject.routerId ? _this.moduleObject.routerId : '')).html(html)
+        laytpl(template).render({ propData: this.propData, moduleObject: this.moduleObject}, (html) => {
+            $('#idm_' + this.moduleObject.id + (this.moduleObject?.routerId ?? '')).html(html)
             _cb?.() // 先回调
-            _this.convertAttrToStyleObject()
-            _this.initData()
+            this.convertAttrToStyleObject()
+            this.initData()
         })
     }
 }
