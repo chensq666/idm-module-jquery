@@ -1,14 +1,15 @@
+<!-- 组件主要模板 -->
 <div idm-ctrl="idm_module"
-   id="moduleObject.id"
-   idm-ctrl-id="moduleObject.id"
+   id="{{= d.moduleObject.id}}"
+   idm-ctrl-id="{{= d.moduleObject.id}}"
    title="">
-   {{:number}}
+   {{= d.propData.title}}
+   <button class="my-btn">1231</button>
 </div>
 
-<script>
 
+<!-- 这里可以放layui模板 -->
+<script id="commontpl" type="text/html">
+   <div>11</div>
 </script>
 
-<style>
-
-</style>

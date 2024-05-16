@@ -36,13 +36,6 @@
             "helpUrl": "",
             "children": [
                 {
-                    "type": "font",
-                    "layoutType": "inline",
-                    "text": "字体设置",
-                    "bindKey": "font",
-                    "placeholder": "请选择颜色"
-                },
-                {
                     "type": "inlineGroup",
                     "text": "宽高",
                     "children": [
@@ -77,6 +70,13 @@
                     "layoutType": "block",
                     "text": "边框",
                     "bindKey": "border"
+                },
+                {
+                    "type": "font",
+                    "layoutType": "inline",
+                    "text": "字体设置",
+                    "bindKey": "font",
+                    "placeholder": "请选择颜色"
                 }
             ]
         }

@@ -9,10 +9,9 @@
     //代码包的内部代码路径，注意js的加载顺序，否则会找不到对象报错之类的问题
     var resource={
         js:{
-            vendors:"js/chunk-vendors",
-            index:"js/index",
+            index:"js/index"
         },
-        css:["css/index","css/chunk-vendors"]
+        css:["css/index"]
     },
     doc = document, config = {},
     //获取当前所在目录

@@ -1,33 +1,57 @@
 import template from './template/IText.html'
-import jsrender from 'jsrender'
+// import otherTemplate from './template/IText.html'
+import 'layui/dist/layui'
 
 class IText {
-    componentData = {
-        number: 123
+    propData = {
+        title: '测试文本'
     }
-    constructor() {
-        this.template = jsrender.templates(template)
-    }
-    setComponentData(data) {
-        this.componentData = { ...this.componentData, ...data }
-        this.render()
+    moduleObject = {}
+    initComponent(moduleObject) {
+        this.propData = moduleObject?.props?.compositeAttr || this.propData
+        this.moduleObject = moduleObject
+        this.render(() => {
+            moduleObject?.mountComplete?.(moduleObject)
+        })
     }
     propDataWatchHandle(propData) {
-        this.componentData = { ...this.componentData, propData }
-        this.refreshHtml()
+        this.propData = propData
+        this.render()
+    }
+    convertAttrToStyleObject() {
+        var styleObject = {}
+        for (const key in this.propData) {
+            const element = this.propData[key]
+            switch (key) {
+                case 'width':
+                case 'height':
+                    styleObject[key] = element
+                    break
+                case 'box':
+                    IDM.style.setBoxStyle(styleObject, element)
+                    break
+                case 'border':
+                    IDM.style.setBorderStyle(styleObject, element)
+                    break
+                case 'font':
+                    IDM.style.setFontStyle(styleObject, element)
+                    break
+            }
+            window.IDM.setStyleToPageHead(this.moduleObject.id, styleObject)
+        }
+    }
+    initData() {
+        
     }
     // 渲染数据
-    render() {
-        this.html = this.template.render(this.componentData)
-    }
-    // 刷新页面
-    refreshHtml() {
-        this.render()
-        $(this.selector).html(this.html)
-    }
-    mount(selector) {
-        this.selector = selector
-        this.refreshHtml()
+    render(_cb) {
+        const _this = this, laytpl = layui.laytpl
+        laytpl(template).render({ propData: this.propData, moduleObject: this.moduleObject}, function (html) {
+            $('#idm_' + _this.moduleObject.id + (_this.moduleObject.routerId ? _this.moduleObject.routerId : '')).html(html)
+            _cb?.() // 先回调
+            _this.convertAttrToStyleObject()
+            _this.initData()
+        })
     }
 }
 

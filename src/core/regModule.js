@@ -33,16 +33,15 @@ import config from '../../public/static/config.json'
                 // 编辑属性更新
                 moduleObject.idmProps = (props) => componentInstance.propDataWatchHandle(props.compositeAttr)
                 // reload
-                moduleObject.moduleReload = () => componentInstance.reload()
+                moduleObject.moduleReload = () => componentInstance?.getContextValue?.()
                 // 接收消息
-                moduleObject.idmBroadcastMessage = (object) => componentInstance.receiveBroadcastMessage(object)
+                moduleObject.idmBroadcastMessage = (object) => componentInstance?.getContextValue?.(object)
                 // 交互功能：设置组件的上下文内容值
-                moduleObject.idmSetContextValue = (object) => componentInstance.setContextValue(object)
+                moduleObject.idmSetContextValue = (object) => componentInstance?.getContextValue?.(object)
                 // 交互功能：获取需要返回的值
-                moduleObject.idmGetContextValue = () => {}
+                moduleObject.idmGetContextValue = () => componentInstance?.getContextValue?.()
 
-                componentInstance.setComponentData(moduleObject)
-                componentInstance.mount('#' + moduleObject.id)
+                componentInstance.initComponent(moduleObject)
             }
         })
     Object.keys(defining).forEach((key) => {
