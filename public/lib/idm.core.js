@@ -61,6 +61,29 @@
          */
         var util = {
             /**
+             * object对象转换为字符串
+             * @param {*} object 对象
+             * @param {*} fieldSplit 字段的分隔符，默认为分号（;）
+             * @param {*} keyValSplit  字段的key、value中间的分隔符，默认为冒号（:）
+             * @returns 
+             */
+            objectToString: function (object,fieldSplit,keyValSplit){
+                let newObjectStr = "";
+                if(typeof object != "object"){
+                    return newObjectStr
+                }
+                if (Object.keys(object).length == 0) {
+                    return;
+                }
+                for (const key in object) {
+                    if (Object.hasOwnProperty.call(object, key)) {
+                        const element = object[key];
+                        newObjectStr += `${key}${keyValSplit||":"}${element}${fieldSplit||';'}`
+                    }
+                }
+                return newObjectStr;
+            },
+            /**
             * 通用的获取表达式匹配后的结果
             * 例1：IDM.getExpressData("data.dataFieldName",{data:{dataFieldName:"1234"}})  // => 1234
             * 例2：IDM.getExpressData("_idm_[0].data.dataFieldName",[{data:{dataFieldName:"1234"}}])  // => 1234
