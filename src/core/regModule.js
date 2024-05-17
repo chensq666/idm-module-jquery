@@ -31,7 +31,7 @@ import config from '../../public/static/config.json'
                     moduleObject.innerComName = item.innerComName
                 }
                 // 编辑属性更新
-                moduleObject.idmProps = (props) => componentInstance.propDataWatchHandle(props.compositeAttr)
+                moduleObject.idmProps = (props) => componentInstance.propDataWatchHandle(props)
                 // 接收消息
                 moduleObject.idmBroadcastMessage = (object) => componentInstance?.receiveBroadcastMessage?.(object)
                 // 交互功能：设置组件的上下文内容值

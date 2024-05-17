@@ -13,8 +13,8 @@ class IText {
             moduleObject?.mountComplete?.(moduleObject)
         })
     }
-    propDataWatchHandle(propData) {
-        this.propData = propData
+    propDataWatchHandle(props) {
+        this.propData = props?.compositeAttr
         this.render()
     }
     convertAttrToStyleObject() {
