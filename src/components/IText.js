@@ -1,10 +1,9 @@
 import template from './template/IText.html'
 // import otherTemplate from './template/IText.html'
-import 'layui/dist/layui'
 
 class IText {
     propData = {
-        title: '测试文本'
+        title: '测试文本_渲染'
     }
     moduleObject = {}
     initComponent(moduleObject) {
@@ -51,8 +50,8 @@ class IText {
     getContextValue(){}
     // 渲染数据
     render(_cb) {
-        const _this = this, laytpl = layui.laytpl
-        laytpl(template).render({ propData: this.propData, moduleObject: this.moduleObject}, (html) => {
+        const _this = this
+        IDM.laytpl(template).render({ propData: this.propData, moduleObject: this.moduleObject}, (html) => {
             $('#idm_' + this.moduleObject.id + (this.moduleObject?.routerId ?? '')).html(html)
             _cb?.() // 先回调
             this.convertAttrToStyleObject()
