@@ -54,6 +54,13 @@ class IText {
         IDM.laytpl(template).render({ propData: this.propData, moduleObject: this.moduleObject}, (html) => {
             $('#idm_' + this.moduleObject.id + (this.moduleObject?.routerId ?? '')).html(html)
             _cb?.() // 先回调
+            IDM.on({
+              btnClick:function(){
+                alert($(this).data("item")+$(this).attr("key"))
+              }
+            },{
+              elem:'#idm_' + this.moduleObject.id + (this.moduleObject?.routerId ?? '')
+            })
             this.convertAttrToStyleObject()
             this.initData()
         })
