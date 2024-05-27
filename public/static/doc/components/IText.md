@@ -3,13 +3,13 @@
 ## 组件类名（className）
 IText
 ## 组件类ID（classId）
-idm.component.react.text
+idm.component.jquery.itext
 ## 组件开发语言（comLangue）
-react
+jquery
 ## 组件类型（comType）
 common
 ## 所在代码包版本
-react@1.0.0
+jquery@1.0.0
 ## 组件属性
 ### 唯一标识【ctrlId】
 ### 基本属性
